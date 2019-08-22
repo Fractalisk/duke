@@ -15,6 +15,12 @@ public class Duke {
             else if (userinput.equals("list")) {
                 jout.list(jlist);
             }
+            else if (userinput.startsWith("done")) {
+                userinput = userinput.replaceAll("\\D+","");
+                int index = Integer.parseInt(userinput);
+                jlist.markdone(index-1);
+                jout.done(jlist, index-1);
+            }
             else {
                 jout.add(userinput);
                 jlist.add(userinput);

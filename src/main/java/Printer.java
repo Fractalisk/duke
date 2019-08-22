@@ -36,10 +36,26 @@ public class Printer implements printcommands {
     public void list(List input) {
         int counter = 0;
         System.out.println("    ____________________________________________________________");
+        System.out.println("    " + "Here are the tasks in your list:");
         while (counter < input.stored()) {
-            System.out.println("     " + input.list()[counter]);
+            System.out.print("     " + String.valueOf(counter+1) + "." );
+            if (input.isdone(counter) == true) {
+                System.out.print("[\u2713]");
+            }
+            else {
+                System.out.print("[\u2718]");
+            }
+            System.out.println(input.list(counter));
+
             counter++;
         }
         System.out.println("    ____________________________________________________________");
     }
+    public void done(List input, int index) {
+        System.out.println("    ____________________________________________________________");
+        System.out.println("    " + "Nice! I've marked this task as done:");
+        System.out.println("     [\u2713]" + input.list(index));
+        System.out.println("    ____________________________________________________________");
+    }
+
 }
