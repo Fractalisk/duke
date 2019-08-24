@@ -14,15 +14,19 @@ public class List implements listcommands{
         checklist[objectcount] = false;
         objectcount++;
     }
+
     public String list(int input) {
         return memory[input];
     }
+
     public int stored() {
         return objectcount;
     }
+
     public boolean isdone(int input) {
         return checklist[input];
     }
+
     public void markdone(int input) {
         checklist[input] = true;
     }

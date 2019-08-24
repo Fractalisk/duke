@@ -33,6 +33,7 @@ public class Printer implements printcommands {
                 + "    ____________________________________________________________\n";
         System.out.println(useroutput);
     }
+
     public void list(List input) {
         int counter = 0;
         System.out.println("    ____________________________________________________________");
@@ -51,6 +52,7 @@ public class Printer implements printcommands {
         }
         System.out.println("    ____________________________________________________________");
     }
+
     public void done(List input, int index) {
         System.out.println("    ____________________________________________________________");
         System.out.println("    " + "Nice! I've marked this task as done:");
