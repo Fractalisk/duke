@@ -1,33 +1,39 @@
-interface listcommands {
-    public void add(String input1);
-    public String list(int input1);
-    public int stored();
-}
 
-public class List implements listcommands{
-    private String[] memory = new String[100];
-    private int objectcount = 0;
-    private boolean[] checklist = new boolean[100];
+public class List {
+    protected Node[] memory = new Node[100];
+    protected int objectcount = 0;
 
     public void add(String input) {
-        memory[objectcount] = input;
-        checklist[objectcount] = false;
+        memory[objectcount] = new Node(input);
         objectcount++;
     }
 
-    public String list(int input) {
-        return memory[input];
+    public void addTodo(String input) {
+        memory[objectcount] = new Todo(input);
+        objectcount++;
+    }
+    public void addDeadline(String input, String datetime) {
+        memory[objectcount] = new Deadline(input, datetime);
+        objectcount++;
+    }
+    public void addEvent(String input, String datetime) {
+        memory[objectcount] = new Event(input, datetime);
+        objectcount++;
     }
 
-    public int stored() {
+    public String nodetext(int input) {
+        return memory[input].text();
+    }
+
+    public String nodestatus(int input) {
+        return memory[input].status();
+    }
+
+    public int nodecount() {
         return objectcount;
     }
 
-    public boolean isdone(int input) {
-        return checklist[input];
-    }
-
     public void markdone(int input) {
-        checklist[input] = true;
+        memory[input].setdone();
     }
 }

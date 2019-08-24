@@ -1,29 +1,16 @@
 import java.util.Scanner;
 
 public class Duke {
+    private static Scanner datainput = new Scanner(System.in);
+    private static Inputparser interpreter = new Inputparser();
+
     public static void main(String[] args) {
-        Printer jout = new Printer();
-        List jlist = new List();
-        jout.init();
-        Scanner inputparser = new Scanner(System.in);
         String userinput;
         while (true) {
-            userinput = inputparser.nextLine();
-            if (userinput.equals("bye")) {
-                jout.print("Bye. Hope to see you again soon!");
-            }
-            else if (userinput.equals("list")) {
-                jout.list(jlist);
-            }
-            else if (userinput.startsWith("done")) {
-                userinput = userinput.replaceAll("\\D+","");
-                int index = Integer.parseInt(userinput);
-                jlist.markdone(index-1);
-                jout.done(jlist, index-1);
-            }
-            else {
-                jout.add(userinput);
-                jlist.add(userinput);
+            userinput = datainput.next();
+            int handler = interpreter.parse(userinput, datainput);
+            if (handler == 0 || handler == -1){
+                break;
             }
         }
     }
