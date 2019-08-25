@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Inputparser {
@@ -5,6 +6,7 @@ public class Inputparser {
     Printer jout = new Printer();
     List jlist = new List();
     String temp;
+    DukeExceptionHandler dukeException = new DukeExceptionHandler();
 
     public int parse(String COMMAND, Scanner datainput) {
         switch(COMMAND) {
@@ -15,9 +17,21 @@ public class Inputparser {
                 jout.list(jlist);
                 return 1;
             case "done":
-                int index = datainput.nextInt();
-                jlist.markdone(index-1);
-                jout.done(jlist, index-1);
+                int index = 1;
+                try {
+                    index = datainput.nextInt();
+                    jlist.markdone(index - 1);
+                    jout.done(jlist, index - 1);
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    datainput.nextLine();
+                    return DukeExceptionHandler.doneBound();
+                } catch (NullPointerException e) {
+                    datainput.nextLine();
+                    return DukeExceptionHandler.doneBound();
+                } catch(InputMismatchException e) {
+                    datainput.nextLine();
+                    return DukeExceptionHandler.doneInput();
+                }
                 return 2;
             case "todo":
                 String userinput = datainput.nextLine();
@@ -25,18 +39,27 @@ public class Inputparser {
                 jout.addTodo(jlist);
                 return 3;
             case "deadline":
-                temp = datainput.nextLine();
-                String[] userinput1 = temp.split("/by");
-                jlist.addDeadline(userinput1[0], userinput1[1]);
-                jout.addDeadlineEvent(jlist);
-                return 4;
+                try {
+                    temp = datainput.nextLine();
+                    String[] userinput1 = temp.split("/by");
+                    jlist.addDeadline(userinput1[0], userinput1[1]);
+                    jout.addDeadlineEvent(jlist);
+                    return 4;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    return DukeExceptionHandler.deadlineInput();
+                }
             case "event":
-                temp = datainput.nextLine();
-                String[] userinput2 = temp.split("/at");
-                jlist.addEvent(userinput2[0], userinput2[1]);
-                jout.addDeadlineEvent(jlist);
-                return 5;
+                try {
+                    temp = datainput.nextLine();
+                    String[] userinput2 = temp.split("/at");
+                    jlist.addEvent(userinput2[0], userinput2[1]);
+                    jout.addDeadlineEvent(jlist);
+                    return 5;
+                } catch (ArrayIndexOutOfBoundsException e) {
+                    return DukeExceptionHandler.eventInput();
+                }
         }
-        return -1;
+        datainput.nextLine();;
+        return DukeExceptionHandler.unknown();
     }
 }

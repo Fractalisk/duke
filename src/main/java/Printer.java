@@ -3,7 +3,7 @@ public class Printer {
     private static final String TAB = "     ";
     private static final String ADD = "Got it. I've added this task:\n";
 
-    public Printer() {
+    public static void init() {
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"

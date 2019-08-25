@@ -1,0 +1,28 @@
+import java.util.Scanner;
+
+public class DukeExceptionHandler {
+
+    private static Printer jout = new Printer();
+
+    public static int doneInput() {
+        jout.print("☹ OOPS!!! It appears the command was entered wrongly.\n      Try \"done *insert index here*\"");
+        return 1;
+    }
+    public static int doneBound() {
+        jout.print("☹ OOPS!!! It appears an invalid index was entered.\n     Please try again.");
+        return 1;
+    }
+    public static int unknown() {
+        jout.print("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        return -1;
+    }
+    public static int deadlineInput() {
+        jout.print("☹ OOPS!!! It appears the command was entered wrongly.\n      Try \"deadline *insert info here* /by *deadline*\"");
+        return 1;
+    }
+    public static int eventInput() {
+        jout.print("☹ OOPS!!! It appears the command was entered wrongly.\n      Try \"event *insert info here* /at *venue*\"");
+        return 1;
+    }
+
+}
