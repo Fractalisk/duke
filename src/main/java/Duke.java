@@ -8,6 +8,7 @@ public class Duke {
         Printer.init();
         String userinput;
         int handler;
+        interpreter.parseSave();
         while (true) {
             userinput = datainput.next();
             handler = interpreter.parse(userinput, datainput);
@@ -15,5 +16,7 @@ public class Duke {
                 break;
             }
         }
+        interpreter.writesave();
+        interpreter.closesave();
     }
 }

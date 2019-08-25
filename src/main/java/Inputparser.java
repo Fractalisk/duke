@@ -3,10 +3,12 @@ import java.util.Scanner;
 
 public class Inputparser {
 
-    Printer jout = new Printer();
-    List jlist = new List();
-    String temp;
-    DukeExceptionHandler dukeException = new DukeExceptionHandler();
+    private Printer jout = new Printer();
+    private List jlist = new List();
+    private String temp;
+    private DukeExceptionHandler dukeException = new DukeExceptionHandler();
+    private static SaveUtil savehandler = new SaveUtil();
+
 
     public int parse(String COMMAND, Scanner datainput) {
         switch(COMMAND) {
@@ -61,5 +63,17 @@ public class Inputparser {
         }
         datainput.nextLine();;
         return DukeExceptionHandler.unknown();
+    }
+
+    public void parseSave() {
+        savehandler.readsave(jlist);
+    }
+
+    public void writesave () {
+        savehandler.writesave(jlist);
+    }
+
+    public void closesave() {
+        savehandler.closesave();
     }
 }
