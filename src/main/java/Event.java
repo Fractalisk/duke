@@ -26,7 +26,7 @@ public class Event extends Node{
 
     @Override
     public String text() {
-        return this.text + "(at:" + day + " " + month.getDisplayName(FULL, Locale.ENGLISH)
+        return this.text + "(at: " + day + " " + month.getDisplayName(FULL, Locale.ENGLISH)
                 + " " + year + " " + hour + mins + ")";
     }
 

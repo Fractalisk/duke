@@ -17,7 +17,7 @@ public class Deadline extends Node{
 
     public Deadline(String description, Calendar datetime) {
         this.text = description;
-        this.day = datetime.get(Calendar.DAY_OF_WEEK);
+        this.day = datetime.get(Calendar.DAY_OF_MONTH);
         this.month = Month.of(datetime.get(Calendar.MONTH) + 1);
         this.year = datetime.get(Calendar.YEAR);
         this.hour = datetime.get(Calendar.HOUR_OF_DAY);
@@ -27,7 +27,7 @@ public class Deadline extends Node{
 
     @Override
     public String text() {
-        return this.text + "(by:" + day + " " + month.getDisplayName(FULL, Locale.ENGLISH)
+        return this.text + "(by: " + day + " " + month.getDisplayName(FULL, Locale.ENGLISH)
                          + " " + year + " " + hour + (mins > 9 ? mins : "0" + mins) + ")";
     }
 
