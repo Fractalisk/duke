@@ -28,7 +28,6 @@ public class Inputparser {
                     datainput.nextLine();
                     return DukeExceptionHandler.doneBound();
                 } catch (NullPointerException e) {
-                    /*2/12/2019 1800*/
                     datainput.nextLine();
                     return DukeExceptionHandler.doneBound();
                 } catch(InputMismatchException e) {

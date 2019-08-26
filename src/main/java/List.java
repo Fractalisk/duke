@@ -19,13 +19,19 @@ public class List {
 
     public void addDeadline(String input, String datetime) {
         SimpleDateFormat dateparser = new SimpleDateFormat("dd/MM/yyyy HHmm");
-        Date date = new Date();
         Calendar cal = Calendar.getInstance();
+        Date date;
         try {
             date = dateparser.parse(datetime);
             cal.setTime(date);
         } catch (ParseException e) {
-            System.out.println("     Error when parsing date");
+            SimpleDateFormat altparser = new SimpleDateFormat("dd MMMM yyyy hh.mm a");
+            try {
+                date = altparser.parse(datetime);
+                cal.setTime(date);
+            } catch (ParseException f) {
+                System.out.println("     Error when parsing date");
+            }
         }
         memory[objectcount] = new Deadline(input, cal);
         objectcount++;
@@ -33,15 +39,21 @@ public class List {
 
     public void addEvent(String input, String datetime) {
         SimpleDateFormat dateparser = new SimpleDateFormat("dd/MM/yyyy HHmm");
-        Date date = new Date();
+        Date date;
         Calendar cal = Calendar.getInstance();
         try {
             date = dateparser.parse(datetime);
             cal.setTime(date);
         } catch (ParseException e) {
-            System.out.println("     Error when parsing date");
+            SimpleDateFormat altparser = new SimpleDateFormat("dd MMMM yyyy hh.mm a");
+            try {
+                date = altparser.parse(datetime);
+                cal.setTime(date);
+            } catch (ParseException f) {
+                System.out.println("     Error when parsing date");
+            }
         }
-        memory[objectcount] = new Deadline(input, cal);
+        memory[objectcount] = new Event(input, cal);
         objectcount++;
     }
 
