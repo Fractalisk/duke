@@ -30,10 +30,10 @@ public class List {
                 date = altparser.parse(datetime);
                 cal.setTime(date);
             } catch (ParseException f) {
-                System.out.println("     Error when parsing date");
+                cal = null;
             }
         }
-        memory[objectcount] = new Deadline(input, cal);
+        memory[objectcount] = new Deadline(input, datetime, cal);
         objectcount++;
     }
 
@@ -50,10 +50,10 @@ public class List {
                 date = altparser.parse(datetime);
                 cal.setTime(date);
             } catch (ParseException f) {
-                System.out.println("     Error when parsing date");
+                cal = null;
             }
         }
-        memory[objectcount] = new Event(input, cal);
+        memory[objectcount] = new Event(input, datetime, cal);
         objectcount++;
     }
 
