@@ -8,7 +8,7 @@ import static java.time.format.TextStyle.FULL;
 
 public class Event extends Node{
 
-    private Calendar datetime;
+    private Calendar datetime = null;
     private char nodetype = 'E';
     private int day;
     private Month month;
