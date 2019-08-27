@@ -28,5 +28,10 @@ public class DukeExceptionHandler {
         jout.print("☹ OOPS!!! It appears you have reached the maximum memory allocated to duke.\n     It is now impossible to add more entries");
         return 1;
     }
+    public static int fieldempty() {
+        jout.print("☹ OOPS!!! It appears your command has a few missing fields\n" +
+                "     please try again");
+        return 1;
+    }
 
 }

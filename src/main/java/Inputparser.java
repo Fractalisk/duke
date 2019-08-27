@@ -38,19 +38,27 @@ public class Inputparser {
                 return 2;
             case "todo":
                 if (jlist.nodecount() == MAX) {
+                    datainput.nextLine();
                     return DukeExceptionHandler.memoryfull();
                 }
                 String userinput = datainput.nextLine();
+                if (userinput.trim().length() == 0) {
+                    return DukeExceptionHandler.fieldempty();
+                }
                 jlist.addTodo(userinput);
                 jout.addTodo(jlist);
                 return 3;
             case "deadline":
                 if (jlist.nodecount() == MAX) {
+                    datainput.nextLine();
                     return DukeExceptionHandler.memoryfull();
                 }
                 try {
                     temp = datainput.nextLine();
                     String[] userinput1 = temp.split("/by");
+                    if (userinput1[0].trim().length() == 0 || userinput1[1].trim().length() == 0) {
+                        return DukeExceptionHandler.fieldempty();
+                    }
                     jlist.addDeadline(userinput1[0], userinput1[1]);
                     jout.addDeadlineEvent(jlist);
                     return 4;
@@ -59,11 +67,15 @@ public class Inputparser {
                 }
             case "event":
                 if (jlist.nodecount() == MAX) {
+                    datainput.nextLine();
                     return DukeExceptionHandler.memoryfull();
                 }
                 try {
                     temp = datainput.nextLine();
                     String[] userinput2 = temp.split("/at");
+                    if (userinput2[0].trim().length() == 0 || userinput2[1].trim().length() == 0) {
+                        return DukeExceptionHandler.fieldempty();
+                    }
                     jlist.addEvent(userinput2[0], userinput2[1]);
                     jout.addDeadlineEvent(jlist);
                     return 5;
@@ -71,7 +83,7 @@ public class Inputparser {
                     return DukeExceptionHandler.eventInput();
                 }
         }
-        datainput.nextLine();;
+        datainput.nextLine();
         return DukeExceptionHandler.unknown();
     }
 
