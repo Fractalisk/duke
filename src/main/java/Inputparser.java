@@ -8,7 +8,7 @@ public class Inputparser {
     private String temp;
     private DukeExceptionHandler dukeException = new DukeExceptionHandler();
     private static SaveUtil savehandler = new SaveUtil();
-
+    private static int MAX = 100;
 
     public int parse(String COMMAND, Scanner datainput) {
         switch(COMMAND) {
@@ -17,6 +17,7 @@ public class Inputparser {
                 return 0;
             case "list":
                 jout.list(jlist);
+                datainput.nextLine();
                 return 1;
             case "done":
                 int index = 1;
@@ -36,11 +37,17 @@ public class Inputparser {
                 }
                 return 2;
             case "todo":
+                if (jlist.nodecount() == MAX) {
+                    return DukeExceptionHandler.memoryfull();
+                }
                 String userinput = datainput.nextLine();
                 jlist.addTodo(userinput);
                 jout.addTodo(jlist);
                 return 3;
             case "deadline":
+                if (jlist.nodecount() == MAX) {
+                    return DukeExceptionHandler.memoryfull();
+                }
                 try {
                     temp = datainput.nextLine();
                     String[] userinput1 = temp.split("/by");
@@ -51,6 +58,9 @@ public class Inputparser {
                     return DukeExceptionHandler.deadlineInput();
                 }
             case "event":
+                if (jlist.nodecount() == MAX) {
+                    return DukeExceptionHandler.memoryfull();
+                }
                 try {
                     temp = datainput.nextLine();
                     String[] userinput2 = temp.split("/at");

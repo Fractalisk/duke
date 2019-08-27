@@ -24,5 +24,9 @@ public class DukeExceptionHandler {
         jout.print("☹ OOPS!!! It appears the command was entered wrongly.\n      Try \"event *insert info here* /at *venue*\"");
         return 1;
     }
+    public static int memoryfull() {
+        jout.print("☹ OOPS!!! It appears you have reached the maximum memory allocated to duke.\n     It is now impossible to add more entries");
+        return 1;
+    }
 
 }
