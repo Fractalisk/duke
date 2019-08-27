@@ -17,9 +17,9 @@ public class Event extends Node{
 
     public Event(String description, String info, Calendar datetime) {
         this.info = info;
+        this.text = description;
         if (datetime != null) {
             this.datetime = datetime;
-            this.text = description;
             this.day = datetime.get(Calendar.DAY_OF_MONTH);
             this.month = Month.of(datetime.get(Calendar.MONTH) + 1);
             this.year = datetime.get(Calendar.YEAR);
