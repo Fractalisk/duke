@@ -1,20 +1,16 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class List {
-    protected Node[] memory = new Node[100];
+    protected ArrayList<Node> memory = new ArrayList<Node>();
     protected int objectcount = 0;
 
-    public void add(String input) {
-        memory[objectcount] = new Node(input);
-        objectcount++;
-    }
-
     public void addTodo(String input) {
-        memory[objectcount] = new Todo(input);
-        objectcount++;
+        memory.add(new Todo(input));
+        objectcount = memory.size();
     }
 
     public void addDeadline(String input, String datetime) {
@@ -33,8 +29,8 @@ public class List {
                 cal = null;
             }
         }
-        memory[objectcount] = new Deadline(input, datetime, cal);
-        objectcount++;
+        memory.add(new Deadline(input, datetime, cal));
+        objectcount = memory.size();
     }
 
     public void addEvent(String input, String datetime) {
@@ -53,16 +49,16 @@ public class List {
                 cal = null;
             }
         }
-        memory[objectcount] = new Event(input, datetime, cal);
-        objectcount++;
+        memory.add(new Event(input, datetime, cal));
+        objectcount = memory.size();
     }
 
     public String nodetext(int input) {
-        return memory[input].text();
+        return memory.get(input).text();
     }
 
     public String nodestatus(int input) {
-        return memory[input].status();
+        return memory.get(input).status();
     }
 
     public int nodecount() {
@@ -70,6 +66,13 @@ public class List {
     }
 
     public void markdone(int input) {
-        memory[input].setdone();
+        Node temp = memory.get(input);
+        temp.setdone();
+        memory.set(input, temp);
+    }
+
+    public void remove(int input) {
+        memory.remove(input);
+        objectcount = memory.size();
     }
 }

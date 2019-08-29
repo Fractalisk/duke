@@ -25,15 +25,12 @@ public class Inputparser {
                     index = datainput.nextInt();
                     jlist.markdone(index - 1);
                     jout.done(jlist, index - 1);
-                } catch (ArrayIndexOutOfBoundsException e) {
-                    datainput.nextLine();
-                    return DukeExceptionHandler.doneBound();
-                } catch (NullPointerException e) {
-                    datainput.nextLine();
-                    return DukeExceptionHandler.doneBound();
                 } catch(InputMismatchException e) {
                     datainput.nextLine();
                     return DukeExceptionHandler.doneInput();
+                } catch (Exception e) {
+                    datainput.nextLine();
+                    return DukeExceptionHandler.doneBound();
                 }
                 return 2;
             case "todo":
@@ -81,6 +78,15 @@ public class Inputparser {
                     return 5;
                 } catch (ArrayIndexOutOfBoundsException e) {
                     return DukeExceptionHandler.eventInput();
+                }
+            case "delete" :
+                try {
+                    index = datainput.nextInt();
+                    jout.remove(jlist, index);
+                    jlist.remove(index-1);
+                    return 6;
+                } catch (Exception e) {
+                    return dukeException.removeinput();
                 }
         }
         datainput.nextLine();

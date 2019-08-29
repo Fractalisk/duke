@@ -64,4 +64,14 @@ public class Printer {
         System.out.print(MARGIN);
     }
 
+    public void remove(List input, int index) {
+        int nodecount = input.nodecount();
+        String useroutput = MARGIN
+                + TAB + "Noted. I've removed this task:\n"
+                + TAB + input.nodestatus(index-1) + input.nodetext(index-1) + "\n"
+                + TAB + "Now you have " + (nodecount-1) + " task" + (nodecount > 1 ? "s in the list.": " in the list.") + "\n"
+                + MARGIN;
+        System.out.print(useroutput);
+    }
+
 }
