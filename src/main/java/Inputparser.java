@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -85,10 +86,22 @@ public class Inputparser {
                     jout.remove(jlist, index);
                     jlist.remove(index-1);
                     return 6;
+                } catch (IndexOutOfBoundsException e) {
+                    return dukeException.removeoob();
                 } catch (Exception e) {
                     return dukeException.removeinput();
                 }
->>>>>>> origin/branch-Level-9
+            case "find" :
+                try {
+                    temp = datainput.nextLine().trim();
+                    ArrayList<Integer> temp1 = new ArrayList<Integer>();
+                    jlist.findNode(temp, temp1);
+                    jout.found(jlist, temp1);
+                    return 7;
+                } catch (Exception e) {
+                    return dukeException.removeinput();
+                }
+
         }
         datainput.nextLine();
         return DukeExceptionHandler.unknown();

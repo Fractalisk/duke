@@ -33,8 +33,8 @@ public class DukeExceptionHandler {
                 "     please try again.");
         return 1;
     }
-    public static int removeinput() {
-        jout.print("☹ OOPS!!! It appears your command has a few input errors.\n" +
+    public static int removeoob() {
+        jout.print("☹ OOPS!!! It appears you are trying to delete a nonexistent entry\n" +
                 "     Please try again.");
         return 1;
     }
