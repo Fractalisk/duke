@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Inputparser {
@@ -23,15 +22,13 @@ public class Inputparser {
             case "done":
                 int index = 1;
                 try {
-                    index = datainput.nextInt();
+                    index = Integer.parseInt(datainput.nextLine());
                     jlist.markdone(index - 1);
                     jout.done(jlist, index - 1);
-                } catch(InputMismatchException e) {
-                    datainput.nextLine();
-                    return DukeExceptionHandler.doneInput();
-                } catch (Exception e) {
-                    datainput.nextLine();
+                } catch (NumberFormatException e) {
                     return DukeExceptionHandler.doneBound();
+                } catch (Exception f) {
+                    return DukeExceptionHandler.doneInput();
                 }
                 return 2;
             case "todo":
@@ -82,13 +79,13 @@ public class Inputparser {
                 }
             case "delete" :
                 try {
-                    index = datainput.nextInt();
+                    index = Integer.parseInt(datainput.nextLine());
                     jout.remove(jlist, index);
                     jlist.remove(index-1);
                     return 6;
-                } catch (IndexOutOfBoundsException e) {
+                } catch (NumberFormatException e) {
                     return dukeException.removeoob();
-                } catch (Exception e) {
+                } catch (Exception f) {
                     return dukeException.removeinput();
                 }
             case "find" :

@@ -51,7 +51,7 @@ public class Printer {
         System.out.print(MARGIN);
         System.out.println(TAB + "Here are the tasks in your list:");
         while (counter < input.nodecount()) {
-            System.out.print(TAB + String.valueOf(counter+1) + "." );
+            System.out.print(TAB + (counter+1) + "." );
             System.out.print(input.nodestatus(counter));
             System.out.println(input.nodetext(counter));
             counter++;
