@@ -52,6 +52,13 @@ public class List {
         memory.add(new Event(input, datetime, cal));
         objectcount = memory.size();
     }
+    public void findNode(String input, ArrayList<Integer> templist1) {
+        for (int i = 0; i < memory.size(); i++) {
+            if (memory.get(i).text().contains(input)) {
+                templist1.add(i+1);
+            }
+        }
+    }
 
     public String nodetext(int input) {
         return memory.get(input).text();

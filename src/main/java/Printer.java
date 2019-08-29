@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Printer {
     private static final String MARGIN = "    ____________________________________________________________\n";
     private static final String TAB = "     ";
@@ -62,6 +64,25 @@ public class Printer {
         System.out.println(TAB + "Nice! I've marked this task as done:");
         System.out.println(TAB + "[\u2713]" + input.nodetext(index));
         System.out.print(MARGIN);
+    }
+    public void found(List input, ArrayList<Integer> id) {
+        int limit = id.size();
+        int marker = 0;
+        if (limit > 0) {
+            String useroutput = MARGIN
+                    + TAB + "Here are the matching tasks in your list:\n";
+            while (marker < limit) {
+                int temp = id.get(marker) - 1;
+                useroutput += TAB + id.get(marker) + ". " + input.nodestatus(temp) + input.nodetext(temp) + "\n";
+                marker++;
+            }
+            useroutput += MARGIN;
+            System.out.print(useroutput);
+        } else {
+            System.out.print(MARGIN);
+            System.out.println(TAB + "☹ OOPS!!! It appears there were no relevant results found.");
+            System.out.print(MARGIN);
+        }
     }
 
     public void remove(List input, int index) {
