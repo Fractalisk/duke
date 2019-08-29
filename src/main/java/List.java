@@ -1,19 +1,20 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
 public class List {
-    protected Node[] memory = new Node[100];
+    protected ArrayList<Node> memory = new ArrayList<Node>();
     protected int objectcount = 0;
 
     public void add(String input) {
-        memory[objectcount] = new Node(input);
+        memory.add(new Node(input));
         objectcount++;
     }
 
     public void addTodo(String input) {
-        memory[objectcount] = new Todo(input);
+        memory.add(new Todo(input));
         objectcount++;
     }
 
@@ -33,7 +34,7 @@ public class List {
                 cal = null;
             }
         }
-        memory[objectcount] = new Deadline(input, datetime, cal);
+        memory.add(new Deadline(input, datetime, cal));
         objectcount++;
     }
 
@@ -53,16 +54,23 @@ public class List {
                 cal = null;
             }
         }
-        memory[objectcount] = new Event(input, datetime, cal);
+        memory.add(new Event(input, datetime, cal));
         objectcount++;
+    }
+    public void findNode(String input, ArrayList<Integer> templist1) {
+        for (int i = 0; i < memory.size(); i++) {
+            if (memory.get(i).text().contains(input)) {
+                templist1.add(i+1);
+            }
+        }
     }
 
     public String nodetext(int input) {
-        return memory[input].text();
+        return memory.get(input).text();
     }
 
     public String nodestatus(int input) {
-        return memory[input].status();
+        return memory.get(input).status();
     }
 
     public int nodecount() {
@@ -70,6 +78,8 @@ public class List {
     }
 
     public void markdone(int input) {
-        memory[input].setdone();
+        Node temp = memory.get(input);
+        temp.setdone();
+        memory.set(input, temp);
     }
 }

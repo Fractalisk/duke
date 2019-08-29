@@ -33,5 +33,10 @@ public class DukeExceptionHandler {
                 "     please try again");
         return 1;
     }
+    public static int removeinput() {
+        jout.print("☹ OOPS!!! It appears your command has a few input errors.\n" +
+                "     Please try again.");
+        return 1;
+    }
 
 }
