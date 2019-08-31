@@ -10,42 +10,46 @@ public class Inputparser {
     private static SaveUtil savehandler = new SaveUtil();
     private static int MAX = 100;
 
-    public int parse(String COMMAND, Scanner datainput) {
+    public String parse(String COMMAND, Scanner datainput) {
         switch(COMMAND) {
+            case "|init|":
+                return jout.init();
             case "bye":
-                jout.print("Bye. Hope to see you again soon!");
-                return 0;
+                savehandler.writesave(jlist);
+                savehandler.closesave();
+                return "Bye. Hope to see you again soon!";
             case "list":
-                jout.list(jlist);
-                datainput.nextLine();
-                return 1;
+                try {
+                    datainput.nextLine();
+                } catch (Exception e) {
+                    //do nothing
+                }
+                return jout.list(jlist);
             case "done":
                 int index = 1;
                 try {
                     index = Integer.parseInt(datainput.nextLine());
                     jlist.markdone(index - 1);
-                    jout.done(jlist, index - 1);
+                    return jout.done(jlist, index - 1);
                 } catch (NumberFormatException e) {
                     return DukeExceptionHandler.doneBound();
                 } catch (Exception f) {
                     return DukeExceptionHandler.doneInput();
                 }
-                return 2;
             case "todo":
                 if (jlist.nodecount() == MAX) {
-                    datainput.nextLine();
                     return DukeExceptionHandler.memoryfull();
                 }
-                String userinput = datainput.nextLine();
-                if (userinput.trim().length() == 0) {
+                String userinput;
+                try {
+                    userinput = datainput.nextLine();
+                } catch (Exception e) {
                     return DukeExceptionHandler.fieldempty();
                 }
                 jlist.addTodo(userinput);
-                jout.addTodo(jlist);
-                return 3;
+                return jout.addTodo(jlist);
             case "deadline":
                 if (jlist.nodecount() == MAX) {
-                    datainput.nextLine();
                     return DukeExceptionHandler.memoryfull();
                 }
                 try {
@@ -55,8 +59,7 @@ public class Inputparser {
                         return DukeExceptionHandler.fieldempty();
                     }
                     jlist.addDeadline(userinput1[0], userinput1[1]);
-                    jout.addDeadlineEvent(jlist);
-                    return 4;
+                    return jout.addDeadlineEvent(jlist);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     return DukeExceptionHandler.deadlineInput();
                 }
@@ -72,17 +75,16 @@ public class Inputparser {
                         return DukeExceptionHandler.fieldempty();
                     }
                     jlist.addEvent(userinput2[0], userinput2[1]);
-                    jout.addDeadlineEvent(jlist);
-                    return 5;
+                    return jout.addDeadlineEvent(jlist);
                 } catch (ArrayIndexOutOfBoundsException e) {
                     return DukeExceptionHandler.eventInput();
                 }
             case "delete" :
                 try {
                     index = Integer.parseInt(datainput.nextLine());
-                    jout.remove(jlist, index);
+                    String temp = jout.remove(jlist, index);
                     jlist.remove(index-1);
-                    return 6;
+                    return temp;
                 } catch (NumberFormatException e) {
                     return dukeException.removeoob();
                 } catch (Exception f) {
@@ -93,26 +95,16 @@ public class Inputparser {
                     temp = datainput.nextLine().trim();
                     ArrayList<Integer> temp1 = new ArrayList<Integer>();
                     jlist.findNode(temp, temp1);
-                    jout.found(jlist, temp1);
-                    return 7;
+                    return jout.found(jlist, temp1);
                 } catch (Exception e) {
                     return dukeException.removeinput();
                 }
 
         }
-        datainput.nextLine();
         return DukeExceptionHandler.unknown();
     }
 
     public void parseSave() {
         savehandler.readsave(jlist);
-    }
-
-    public void writesave () {
-        savehandler.writesave(jlist);
-    }
-
-    public void closesave() {
-        savehandler.closesave();
     }
 }
