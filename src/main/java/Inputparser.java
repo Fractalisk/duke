@@ -57,7 +57,7 @@ public class Inputparser {
                     jlist.addDeadline(userinput1[0], userinput1[1]);
                     jout.addDeadlineEvent(jlist);
                     return 4;
-                } catch (ArrayIndexOutOfBoundsException e) {
+                } catch (Exception e) {
                     return DukeExceptionHandler.deadlineInput();
                 }
             case "event":
@@ -74,7 +74,7 @@ public class Inputparser {
                     jlist.addEvent(userinput2[0], userinput2[1]);
                     jout.addDeadlineEvent(jlist);
                     return 5;
-                } catch (ArrayIndexOutOfBoundsException e) {
+                } catch (Exception e) {
                     return DukeExceptionHandler.eventInput();
                 }
             case "delete" :
@@ -83,9 +83,11 @@ public class Inputparser {
                     jout.remove(jlist, index);
                     jlist.remove(index-1);
                     return 6;
-                } catch (NumberFormatException e) {
+                } catch (IndexOutOfBoundsException e) {
+                    datainput.nextLine();
                     return dukeException.removeoob();
                 } catch (Exception f) {
+                    datainput.nextLine();
                     return dukeException.removeinput();
                 }
             case "find" :
