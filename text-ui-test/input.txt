@@ -1,0 +1,29 @@
+wrong command
+
+todo hello world 
+
+deadline today /by 12/12/2019 1200
+
+deadline today /by tomorrow
+
+event tomorrow /at 1/8/2019 1800
+
+event tomorrow /at today
+
+list
+
+find today
+
+find tomorrow
+
+delete 5
+
+delete 4
+
+delete 3
+
+delete 1
+
+delete 1
+
+bye

@@ -79,7 +79,7 @@ public class Inputparser {
                 }
             case "delete" :
                 try {
-                    index = Integer.parseInt(datainput.nextLine());
+                    index = datainput.nextInt();
                     jout.remove(jlist, index);
                     jlist.remove(index-1);
                     return 6;
