@@ -5,6 +5,9 @@ public class SaveUtil {
     private BufferedWriter bufferedWriter;
     private BufferedReader bufferedReader;
 
+    /**
+     * Initialization function for SaveUtil. Attempts to find a valid savefile, and if non-existent, create a new one
+     */
     public SaveUtil() {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter("savedata", true));
@@ -14,6 +17,12 @@ public class SaveUtil {
         }
     }
 
+    /**
+     * This function reads from the save file that was either found or created in the initialization function
+     * It then translates the data from the save and stores it in a List object
+     * @param jlist List object to store translated data
+     * @return 0 when the function finishes execution
+     */
     public int readsave(List jlist) {
         try {
             int marker = 0;
@@ -56,6 +65,11 @@ public class SaveUtil {
         return 0;
     }
 
+    /**
+     * This function takes in a List object and translates it into data to be stored in the savefile
+     * @param jlist List object to be translated into savefile
+     * @return 0 when the function finishes execution
+     */
     public int writesave(List jlist) {
         try {
             bufferedWriter = new BufferedWriter(new FileWriter("savedata"));
@@ -116,6 +130,11 @@ public class SaveUtil {
         }
         return 0;
     }
+
+    /**
+     * This function closes the write buffer to the savefile, completing the write process
+     * @return 0 when the function finishes execution
+     */
     public int closesave() {
         try {
             bufferedReader.close();

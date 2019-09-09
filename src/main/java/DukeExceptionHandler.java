@@ -1,3 +1,7 @@
+/**
+ * This class is used to print error messages to the user
+ */
+
 public class DukeExceptionHandler {
 
     private static Printer jout = new Printer();

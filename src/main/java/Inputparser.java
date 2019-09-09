@@ -1,6 +1,10 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+/**
+ * This class is used to parse all user inputs from the console
+ */
 public class Inputparser {
 
     private static Printer jout = new Printer();
@@ -10,6 +14,11 @@ public class Inputparser {
     private static SaveUtil savehandler = new SaveUtil();
     private static int MAX = 100;
 
+    /**
+     * This program takes in a string USERINPUT, and parses it into its relevant commands
+     * @param USERINPUT
+     * @return an integer from 0-7 depending on the command parsed
+     */
     public static int parse(String USERINPUT) {
         Scanner datainput = new Scanner(USERINPUT);
         String COMMAND = datainput.next();
@@ -108,14 +117,22 @@ public class Inputparser {
         return DukeExceptionHandler.unknown();
     }
 
+    /**
+     * this function reads from the savefile found in the project's main directory
+     */
     public void parseSave() {
         savehandler.readsave(jlist);
     }
 
+    /**
+     * this function writes to the buffer of the savefile found in the project's main directory
+     */
     public void writesave () {
         savehandler.writesave(jlist);
     }
-
+    /**
+     * this function writes from the buffer to the savefile found in the project's main directory
+     */
     public void closesave() {
         savehandler.closesave();
     }
