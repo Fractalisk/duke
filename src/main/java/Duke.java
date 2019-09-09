@@ -10,8 +10,8 @@ public class Duke {
         int handler;
         interpreter.parseSave();
         while (true) {
-            userinput = datainput.next();
-            handler = interpreter.parse(userinput, datainput);
+            userinput = datainput.nextLine();
+            handler = interpreter.parse(userinput);
             if (handler == 0) {
                 break;
             }

@@ -3,14 +3,16 @@ import java.util.Scanner;
 
 public class Inputparser {
 
-    private Printer jout = new Printer();
-    private List jlist = new List();
-    private String temp;
-    private DukeExceptionHandler dukeException = new DukeExceptionHandler();
+    private static Printer jout = new Printer();
+    private static List jlist = new List();
+    private static String temp;
+    private static DukeExceptionHandler dukeException = new DukeExceptionHandler();
     private static SaveUtil savehandler = new SaveUtil();
     private static int MAX = 100;
 
-    public int parse(String COMMAND, Scanner datainput) {
+    public static int parse(String USERINPUT) {
+        Scanner datainput = new Scanner(USERINPUT);
+        String COMMAND = datainput.next();
         switch(COMMAND) {
             case "bye":
                 jout.print("Bye. Hope to see you again soon!");
